@@ -138,7 +138,7 @@ def main():
 	args = parser.parse_args()
 	input2 = None
 	if is_url(args.input):
-		input2 = args.output or args.input.split("?", 1)[0].rsplit("/", 1)[-1]
+		input2 = args.input.split("?", 1)[0].rsplit("/", 1)[-1]
 		if "." in input2:
 			name, ext = input2.rsplit(".", 1)
 			input2 = name + "~." + ext
