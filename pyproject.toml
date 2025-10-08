@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "audioptic"
+version = "1.0.0"
+dependencies = [
+    "imageio-ffmpeg>=0.6.0",
+    "numpy>=2.2.6",
+    "opencv-python>=4.12.0.88",
+    "streamshatter>=1.0.11",
+]
+description = "Bidirectional spectrogram-based audio-image converter"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [{ name = "Thomas Xin", email = "thomasxin@gmail.com" }]
+license = { text = "MIT" }
+classifiers = ["Programming Language :: Python :: 3"]
+
+[project.scripts]
+audioptic = "audioptic:main"
