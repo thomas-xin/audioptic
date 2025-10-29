@@ -131,7 +131,7 @@ def main():
 		description="Bidirectional spectrogram-based audio-image converter",
 	)
 	parser.add_argument("-V", '--version', action='version', version=f'%(prog)s {__version__}')
-	parser.add_argument("input", help="Input filename")
+	parser.add_argument("input", help="Input filename or URL")
 	parser.add_argument("-sr", "--sample_rate", help="Sample rate; defaults to 42000", nargs="?", type=int, default=42000)
 	parser.add_argument("-f", "--format", help="Output format; defaults to opus or webp depending on input", nargs="?", default="")
 	parser.add_argument("output", help="Output filename", nargs="?", default="")
