@@ -108,7 +108,7 @@ def image2audio(ctx):
 	right_amp[ima[:, 1::2, 1] == 0] = 0
 	left = left_amp * np.exp(1j * left_pha, dtype=np.complex64)
 	right = right_amp * np.exp(1j * right_pha, dtype=np.complex64)
-	transformed = np.stack([left, right])
+	transformed = np.stack([left[:, :right.shape[1]], right])
 
 	data = np.clip(itransform(transformed), -2, 2)
 	codec = ["-sample_fmt", "s16"] if ctx.format in ("wav", "flac") else ["-c:a", "libopus", "-vbr", "on"] if ctx.format in ("ogg", "opus") else ["-vbr", "on"]
@@ -150,7 +150,10 @@ def main():
 		args.input = input2
 	try:
 		name = args.input.rsplit(".", 1)[0]
-		ext = filetype.guess(args.input).extension
+		try:
+			ext = filetype.guess(args.input).extension
+		except AttributeError:
+			ext = args.input.rsplit(".", 1)[-1]
 		fmt = args.format
 		if not fmt:
 			fmt = args.format = args.output.rsplit(".", 1)[-1] if "." in args.output else ("opus" if ext in IMAGE_FORMS else "webp")
