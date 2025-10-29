@@ -1,6 +1,6 @@
 # Audio-Image-Converter
 
-![Sample Image](https://mizabot.xyz/u/8P6cqfXoBBif98AeP_hz-QcMMhYXVg/Sample_Audio.webp)
+<a href="https://mizabot.xyz/u/8P6cqfXoBBif98AeP_hz-QcMMhYXVg/Sample_Audio.webp"><img src="https://mizabot.xyz/u/rp-i7KMCGJ_3wB4_-H_5BAGADx_S/Sample_Audio.avif" alt="Sample Image" /></a>
 
 Converts audio to and from a picture representing the frequency-time domain, remaining perceptually lossless. When converting to `.webp`, achieves slightly better compression ratio than an equivalent `.flac` (Note that this format is not intended to compete with preeexisting audio formats/codecs, and is mostly designed as a novelty, enabling users to visually see the contents of audio files. Slight albeit unnoticeable quality loss is often unavoidable due to the conversions between several data types and representations).
 
