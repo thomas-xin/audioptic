@@ -146,7 +146,10 @@ def main():
 			input2 += "~"
 		import asyncio
 		import streamshatter
-		asyncio.run(streamshatter.shatter_request(args.input, filename=input2))
+		print(input2)
+		f = asyncio.run(streamshatter.shatter_request(args.input, filename=input2))
+		if f:
+			f.close()
 		args.input = input2
 	try:
 		name = args.input.rsplit(".", 1)[0]
