@@ -5,7 +5,7 @@ import cv2 as cv
 import imageio_ffmpeg as ii
 import numpy as np
 ffmpeg = ii.get_ffmpeg_exe()
-ffmpeg_start = (ffmpeg, "-y", "-hide_banner", "-v", "info", "-fflags", "+discardcorrupt+fastseek+genpts+igndts+flush_packets", "-err_detect", "ignore_err", "-hwaccel", "auto")
+ffmpeg_start = (ffmpeg, "-y", "-hide_banner", "-v", "info", "-fflags", "+discardcorrupt+fastseek+genpts+igndts+flush_packets", "-err_detect", "ignore_err", "-hwaccel", "none")
 C0 = 440 / 32 * 2 ** (3 / 12)
 
 
@@ -133,7 +133,7 @@ def audio2image(ctx):
 		subprocess.run(args)
 
 def image2audio(ctx):
-	if ctx.format not in ("png", "webp", "tiff", "jpg", "bmp"):
+	if ctx.extension not in ("png", "webp", "tiff", "jpg", "bmp"):
 		fn = f"{ctx.output.rsplit('.', 1)[0]}~.bmp"
 		args = ffmpeg_start + ("-i", ctx.input, "-vframes", "1", "-pix_fmt", "bgr24", fn)
 		print(args)
@@ -204,6 +204,7 @@ def convert(ctx):
 			ext = filetype.guess(ctx.input).extension
 		except AttributeError:
 			ext = ctx.input.rsplit(".", 1)[-1]
+		ctx.extension = ext
 		fmt = ctx.format
 		if not fmt:
 			fmt = ctx.format = ctx.output.rsplit(".", 1)[-1] if "." in ctx.output else ("opus" if ext in IMAGE_FORMS else "webp")
